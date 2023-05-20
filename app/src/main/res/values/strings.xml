@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">UserTransaction</string>
+    <string name="screen_list">List Screen</string>
+    <string name="screen_detail">Detail Screen</string>
+
+
+    <string name="error_text">Check your connection or try again later.</string>
+    <string name="ok_button_text">OK</string>
+    <string name="back">Back</string>
+    <string name="placeholder">Tap a word to display its description</string>
+
+</resources>
