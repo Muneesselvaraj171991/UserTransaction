@@ -2,19 +2,15 @@ package com.example.usertransaction.compose
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -57,7 +53,6 @@ import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 @Composable
 fun ListScreen(
     isDetailOpen: (Boolean) -> Unit,
-    modifier: Modifier = Modifier,
     listViewModel: ListViewModel,
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
@@ -77,8 +72,6 @@ fun ListScreen(
     }
 
     Scaffold(
-
-        modifier = modifier,
         topBar = {
             TopAppBar(
                 title = { Text(stringResource(id = R.string.screen_list))},
@@ -92,14 +85,8 @@ fun ListScreen(
             modifier = Modifier
                 .padding(padding)
         ) {
-            Column(
-                modifier
-                    .horizontalScroll(
-                        rememberScrollState()
-                    )
-            ) {
-                UserTransactionList(uiState.userTransactionUiState,listViewModel,isDetailOpen)
-            }
+            UserTransactionList(uiState.userTransactionUiState,listViewModel,isDetailOpen)
+
         }
     }
 }
@@ -129,14 +116,7 @@ fun UserTransactionListDetail(
         list = { isDetailVisible ->
             ListScreen(
                 isDetailOpen = { isDetailOpen = it },
-                listViewModel=  listViewModel,
-                modifier = if (isDetailVisible) {
-                    Modifier.padding(end = 8.dp)
-                } else {
-                    Modifier                    .fillMaxWidth()
-
-                }
-            )
+                listViewModel=  listViewModel)
         },
         detail = { isListVisible ->
             DetailScreen(
@@ -161,10 +141,7 @@ fun UserTransactionList(
     uiState: UserTransactionUiState, listViewModel: ListViewModel,isDetailOpen: (Boolean) -> Unit
 ) {
 
-
-
-
-        LazyColumn(
+    LazyColumn(
             contentPadding = PaddingValues(vertical = 16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
@@ -224,24 +201,20 @@ fun ErrorText(
 @Composable
 fun DisplayList(userTransaction: UserTransaction, onItemClick:(UserTransaction) -> Unit
 ) {
-
     Card(modifier = Modifier
-        .width(300.dp)
+        .fillMaxWidth().padding(5.dp)
         .clickable {
             onItemClick(userTransaction)
         },
-
-
-        elevation = CardDefaults.cardElevation(defaultElevation = 10.dp)
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.background,
+        ), elevation = CardDefaults.cardElevation(defaultElevation = 5.dp)
 
     ) {
         Text(
             textAlign = TextAlign.Center,
-
             text = userTransaction.username,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
+            modifier = Modifier.fillMaxWidth().padding(8.dp)
         )
     }
 

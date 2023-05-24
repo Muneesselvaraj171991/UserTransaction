@@ -26,8 +26,8 @@ class OfflineUserTransactionRepository @Inject constructor(
   override suspend fun refreshUserTransaction() {
     api.getUserTransactions()
       .shuffled()
-      .also { externalMovies ->
-        dao.insertUserTransactions(userTransactions = externalMovies.map(UserTransaction::asEntity))
+      .also { externalUserTransactions ->
+        dao.insertUserTransactions(userTransactions = externalUserTransactions.map(UserTransaction::asEntity))
       }
   }
 

@@ -25,9 +25,7 @@ fun DetailScreen(
     modifier: Modifier = Modifier,
     viewModel: ListViewModel,
 ) {
-    DetailScreenShow(
-        modifier = modifier,viewModel
-    )
+    DetailScreenShow(modifier = modifier,viewModel)
 }
 @OptIn(ExperimentalMaterial3Api::class)
 
