@@ -4,7 +4,8 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -35,7 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.window.layout.DisplayFeature
 import com.example.usertransaction.ListViewModel
@@ -128,7 +129,7 @@ fun UserTransactionListDetail(
             )
         },
         twoPaneStrategy = HorizontalTwoPaneStrategy(
-            splitFraction = 1f / 3f,
+            splitFraction = 1.2f / 3f,
         ),
         displayFeatures = displayFeatures,
         modifier = Modifier.padding(horizontal = 16.dp)
@@ -142,7 +143,6 @@ fun UserTransactionList(
 ) {
 
     LazyColumn(
-            contentPadding = PaddingValues(vertical = 16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             when (uiState) {
@@ -202,7 +202,8 @@ fun ErrorText(
 fun DisplayList(userTransaction: UserTransaction, onItemClick:(UserTransaction) -> Unit
 ) {
     Card(modifier = Modifier
-        .fillMaxWidth().padding(5.dp)
+        .fillMaxWidth()
+        .padding(5.dp)
         .clickable {
             onItemClick(userTransaction)
         },
@@ -211,11 +212,22 @@ fun DisplayList(userTransaction: UserTransaction, onItemClick:(UserTransaction) 
         ), elevation = CardDefaults.cardElevation(defaultElevation = 5.dp)
 
     ) {
-        Text(
-            textAlign = TextAlign.Center,
-            text = userTransaction.username,
-            modifier = Modifier.fillMaxWidth().padding(8.dp)
-        )
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)) {
+            Row(modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(text = stringResource(id = R.string.name),modifier = Modifier.weight(0.5f), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
+                Text(text = userTransaction.username,modifier = Modifier.weight(1f))
+            }
+            Row(modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(text = stringResource(id = R.string.description),modifier = Modifier.weight(0.5f),style = MaterialTheme.typography.labelLarge,fontWeight = FontWeight.Bold)
+                Text(text = userTransaction.description,modifier = Modifier.weight(1f))
+            }
+        }
     }
 
 }

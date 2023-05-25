@@ -8,9 +8,13 @@ import androidx.room.PrimaryKey
 data class UserTransactionEntity(
   @PrimaryKey(autoGenerate = true) val id: Int = 0,
   @ColumnInfo(name = "username")
-  val username: String
+  val username: String,
+  @ColumnInfo(name = "description")
+  val description: String
+
 )
 
 fun UserTransactionEntity.asExternalModel() = UserTransaction(
-  username = username
+  username = username,
+  description = description
 )

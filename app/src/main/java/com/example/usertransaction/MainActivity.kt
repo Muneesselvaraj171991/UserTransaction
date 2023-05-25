@@ -2,6 +2,7 @@ package com.example.usertransaction
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
@@ -37,6 +38,10 @@ class MainActivity : ComponentActivity() {
 
                 }
             }
+            BackHandler {
+                finishAffinity()
+            }
+
         }
     }
 }

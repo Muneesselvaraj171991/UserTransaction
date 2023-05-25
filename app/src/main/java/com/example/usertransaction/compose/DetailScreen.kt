@@ -2,6 +2,7 @@ package com.example.usertransaction.compose
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -14,8 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.font.FontWeight
 import com.example.usertransaction.ListViewModel
 import com.example.usertransaction.R
 
@@ -51,12 +51,23 @@ fun DetailScreen(
             verticalArrangement = Arrangement.Center,
         ) {
             if (userTransaction != null) {
-                Text(
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth().padding(8.dp),
-                    text = userTransaction.username,
-                    style = MaterialTheme.typography.headlineMedium
-                )
+
+                     Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(text = stringResource(id = R.string.name),modifier = Modifier.weight(0.5f), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
+                        Text(text = userTransaction.username,modifier = Modifier.weight(1f))
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(text = stringResource(id = R.string.description),modifier = Modifier.weight(0.5f),style = MaterialTheme.typography.labelLarge,fontWeight = FontWeight.Bold)
+                        Text(text = userTransaction.description,modifier = Modifier.weight(1f))
+                    }
+
+
             } else {
                 Text(
                     text = stringResource(R.string.placeholder)
