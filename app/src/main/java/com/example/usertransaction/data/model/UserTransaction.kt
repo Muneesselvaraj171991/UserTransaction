@@ -10,8 +10,7 @@ data class UserTransaction(
   val username: String,
   @Json(name = "Description")
   val description: String
-
-)
+  )
 
 fun UserTransaction.asEntity() = UserTransactionEntity(
   username = username,

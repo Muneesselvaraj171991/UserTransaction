@@ -14,14 +14,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
-  // val MIGRATION_1_2 : Migration = object : Migration(1, 2) {
-  // override fun migrate(database: SupportSQLiteDatabase) {
-  // database.execSQL(
-  //    "ALTER TABLE user-transactions "
-  //       + " ADD COLUMN last_update INTEGER"
-  //  )
-  //  }
-  // }
+
 
   @Provides
   @Singleton
@@ -30,6 +23,7 @@ object DatabaseModule {
   ): UserTransactionDatabase = Room.databaseBuilder(
     context,
     UserTransactionDatabase::class.java,
-    "user-transactions-database"
-  ).build()
+    "user-transactions-database",
+  ).fallbackToDestructiveMigrationOnDowngrade()
+    .build()
 }

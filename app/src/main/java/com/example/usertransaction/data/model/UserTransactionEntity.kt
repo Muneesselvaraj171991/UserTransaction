@@ -10,8 +10,7 @@ data class UserTransactionEntity(
   @ColumnInfo(name = "username")
   val username: String,
   @ColumnInfo(name = "description")
-  val description: String
-
+  val description: String,
 )
 
 fun UserTransactionEntity.asExternalModel() = UserTransaction(

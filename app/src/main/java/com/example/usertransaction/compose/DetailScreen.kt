@@ -51,16 +51,11 @@ fun DetailScreen(
             verticalArrangement = Arrangement.Center,
         ) {
             if (userTransaction != null) {
-
-                     Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
+                Row(modifier = Modifier.fillMaxWidth(),horizontalArrangement = Arrangement.SpaceBetween) {
                         Text(text = stringResource(id = R.string.name),modifier = Modifier.weight(0.5f), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
                         Text(text = userTransaction.username,modifier = Modifier.weight(1f))
                     }
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
+                    Row(modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(text = stringResource(id = R.string.description),modifier = Modifier.weight(0.5f),style = MaterialTheme.typography.labelLarge,fontWeight = FontWeight.Bold)

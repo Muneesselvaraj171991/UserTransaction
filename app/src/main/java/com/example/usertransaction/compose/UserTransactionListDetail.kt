@@ -37,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.window.layout.DisplayFeature
 import com.example.usertransaction.ListViewModel
@@ -225,7 +226,7 @@ fun DisplayList(userTransaction: UserTransaction, onItemClick:(UserTransaction) 
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(text = stringResource(id = R.string.description),modifier = Modifier.weight(0.5f),style = MaterialTheme.typography.labelLarge,fontWeight = FontWeight.Bold)
-                Text(text = userTransaction.description,modifier = Modifier.weight(1f))
+                Text(text = userTransaction.description,maxLines = 1, modifier = Modifier.weight(1f), overflow = TextOverflow.Ellipsis)
             }
         }
     }
