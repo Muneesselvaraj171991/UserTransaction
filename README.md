@@ -7,8 +7,11 @@ Kotlin -  Programming language for Android development.
 Coroutines - For asynchronous and more.
 
 Android Architecture Components - Collection of libraries that help you design robust, testable, and maintainable apps.
+    
     Stateflow - StateFlow is a state-holder observable flow that emits the current and new state updates to its collectors.
+
     Flow - A flow is an asynchronous version of a Sequence, a type of collection whose values are lazily produced.
+   
     ViewModel - Stores UI-related data that isn't destroyed on UI changes.
 
 Room - SQLite object mapping library.
