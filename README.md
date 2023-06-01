@@ -23,8 +23,11 @@ Moshi - A modern JSON library for Kotlin and Java.
 Moshi Converter - A Converter which uses Moshi for serialization to and from JSON.
 
 My idea is to show two pages on mobile screen and show both list and detail screen in single page on tablets or foldable device.
+
 To achieve this:
-    window size class- we get window sze of the screen, sample compact,medium,expanded
+       
+         Window size class- We get window sze of the screen, sample compact,medium,expanded
+
 
 
 
